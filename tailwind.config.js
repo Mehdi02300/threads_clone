@@ -8,8 +8,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        threads: {
+          gray: "#0f0f0f",
+          "gray-light": "#7a7a7a",
+          "gray-dark": "#1e1e1e",
+          modal: "#414040",
+        },
       },
     },
   },

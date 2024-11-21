@@ -75,7 +75,7 @@ export default function Signup() {
           required
           className="input"
         />
-        <Button>S'inscrire</Button>
+        <Button formButton>S'inscrire</Button>
       </form>
       <div className="flex justify-center items-center gap-3 mt-4 text-white">
         <div className="border-t border-threads-gray-light w-1/4"></div>

@@ -7,6 +7,8 @@ const nextConfig = (phase) => {
         MONGODB_CLIENT:
           "mongodb+srv://mehdirhallab:NKYDu45asJLiTver@cluster0.cqkb4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
         MONGODB_DATABASE: "threads",
+        NEXTAUTH_SECRET: "fnhvbuehbzrhnczhbvornlvtdsjkmxjbvbh",
+        NEXTAUTH_URL: "http://localhost:3000",
       },
     };
   }
@@ -15,6 +17,9 @@ const nextConfig = (phase) => {
     env: {
       MONGODB_CLIENT:
         "mongodb+srv://mehdirhallab:NKYDu45asJLiTver@cluster0.cqkb4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+      MONGODB_DATABASE: "threads",
+      NEXTAUTH_SECRET: "fnhvbuehbzrhnczhbvornlvtdsjkmxjbvbh",
+      NEXTAUTH_URL: "http://localhost:3000",
     },
   };
 };

@@ -6,21 +6,24 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Button from "../Button/Button";
+import { signOut, useSession } from "next-auth/react";
 
 const ConnectedLayout = ({ children }) => {
-  // Variables
   const pathname = usePathname();
+  const { data: session } = useSession();
+  console.log(session);
 
   return (
     <section className="flex flex-col min-h-screen px-5">
       {/* Header */}
-      <header className="flex justify-between items-center py-5 z-0">
-        <nav className="absolute left-0 top-0 right-0 flex justify-center gap-5 my-7 -z-10">
-          <Link href="/">
+      <header className="flex justify-between items-center py-5">
+        {/* Navigation */}
+        <nav className="absolute left-0 top-0 right-0 flex justify-center gap-5 my-7">
+          <Link href="/" aria-label="Accueil">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className={`w-10 h-10 hover:bg-gray-800 duration-150 p-1 rounded-xl ${
-                pathname == "/" ? "text-white" : "text-threads-gray-light"
+                pathname === "/" ? "text-white" : "text-threads-gray-light"
               }`}
               viewBox="0 0 256 256"
             >
@@ -31,11 +34,11 @@ const ConnectedLayout = ({ children }) => {
             </svg>
           </Link>
 
-          <Link href="/search">
+          <Link href="/search" aria-label="Recherche">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className={`w-10 h-10 hover:bg-gray-800 duration-150 p-1 rounded-xl ${
-                pathname == "/search" ? "text-white" : "text-threads-gray-light"
+                pathname === "/search" ? "text-white" : "text-threads-gray-light"
               }`}
               viewBox="0 0 256 256"
             >
@@ -47,15 +50,24 @@ const ConnectedLayout = ({ children }) => {
           </Link>
         </nav>
 
+        {/* Logo */}
         <Image src="/logo.png" alt="Threads logo" width={40} height={40} />
 
-        <div>
-          <Link href="/login">
-            <Button className="mt-0 z-10">Se connecter</Button>
-          </Link>
+        {/* Session Handling */}
+        <div className="z-10">
+          {session?.user ? (
+            <Button onClick={() => signOut()} className="mt-0 ">
+              Se déconnecter
+            </Button>
+          ) : (
+            <Link href="/login">
+              <Button className="mt-0">Se connecter</Button>
+            </Link>
+          )}
         </div>
       </header>
-      {/* Content */}
+
+      {/* Main Content */}
       <div className="flex-1">{children}</div>
 
       {/* Footer */}

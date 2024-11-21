@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export default function page() {
   return (
-    <div>
+    <div className="p-5">
       <h1 className="title">Comment souhaitez-vous utiliser Threads ?</h1>
-      <div className="mt-5  w-[500px] mx-auto flex flex-col gap-4">
+      <div className="mt-5  max-w-[500px] mx-auto flex flex-col gap-4">
         <Link href="/login/signup">
           <div className="auth-method">
             <h2 className="font-bold text-white">

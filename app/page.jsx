@@ -1,7 +1,11 @@
 import ConnectedLayout from "@/components/ConnectedLayout/ConnectedLayout";
 import Post from "@/components/Post/Post";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 
-export default function Index() {
+export default async function Index() {
+  // Viariable
+  const session = await getServerSession(authOptions);
   const posts = [
     {
       _id: "1",
@@ -39,8 +43,8 @@ export default function Index() {
     <ConnectedLayout>
       <div className="w-full md:w-[700px] mx-auto mt-10">
         {/* New post */}
-
-        {/* New post */}
+        {session?.user && <div>Formulaire</div>}
+        {/* Post */}
         {posts.map((post) => (
           <div key={post._id}>
             <Post post={post} />

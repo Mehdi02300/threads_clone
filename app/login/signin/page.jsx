@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { signIn } from "next-auth/react";
+import { setCookie } from "cookies-next/client";
 
 export default function Signin() {
   const router = useRouter();
@@ -41,6 +42,8 @@ export default function Signin() {
     }
 
     toast.success("Vous êtes maintenant connecté.");
+
+    setCookie("connected", "true", { maxAge: 3600 });
 
     router.replace("/");
   };

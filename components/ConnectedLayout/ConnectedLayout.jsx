@@ -3,15 +3,25 @@
 import React from "react";
 import Footer from "../Footer";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import Button from "../Button/Button";
 import { signOut, useSession } from "next-auth/react";
+import { deleteCookie } from "cookies-next/client";
 
 const ConnectedLayout = ({ children }) => {
   const pathname = usePathname();
+  const router = useRouter();
   const { data: session } = useSession();
   console.log(session);
+
+  const handleLogout = async () => {
+    await signOut({ redirect: false });
+
+    deleteCookie("connected");
+
+    router.push("/login");
+  };
 
   return (
     <section className="flex flex-col min-h-screen px-5">
@@ -56,7 +66,7 @@ const ConnectedLayout = ({ children }) => {
         {/* Session Handling */}
         <div className="z-10">
           {session?.user ? (
-            <Button onClick={() => signOut()} className="mt-0 ">
+            <Button onClick={() => handleLogout()} className="mt-0 ">
               Se déconnecter
             </Button>
           ) : (

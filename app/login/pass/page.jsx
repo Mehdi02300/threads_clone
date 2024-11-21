@@ -10,7 +10,7 @@ export default function Pass() {
 
   // Function
   const onContinue = () => {
-    setCookie("guest", "true");
+    setCookie("guest", "true", { maxAge: 3600 });
     router.push("/");
   };
 

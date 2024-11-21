@@ -12,6 +12,10 @@ export async function middleware(req) {
   }
 
   // Check if connected
+  const authToken = await hasCookie("connected", { req, res });
+  if (authToken) {
+    isAuthenticated = true;
+  }
 
   // Check if isAuthenticated
   if (!isAuthenticated) {
